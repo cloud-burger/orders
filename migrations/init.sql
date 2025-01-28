@@ -1,8 +1,8 @@
 -- cria banco de dados
-CREATE DATABASE self_service;
+CREATE DATABASE orders;
 
 -- conecta no banco criado
-\c self_service;
+\c orders;
 
 -- define schema como padrão
 SET search_path TO public;

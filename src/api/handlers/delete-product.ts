@@ -25,7 +25,7 @@ export const deleteProduct = async (
   request: Request,
   response: Response,
 ): Promise<Response> => {
-  logger.setEvent('self-service', request);
+  logger.setEvent('orders', request);
   logger.debug({
     message: 'Event received',
     data: request,
