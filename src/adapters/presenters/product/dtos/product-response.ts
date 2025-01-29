@@ -5,7 +5,7 @@ export interface ProductResponse {
   name: string;
   category: ProductCategory;
   description: string;
-  amount: string;
+  amount: number;
   image?: any;
   notes?: string;
   quantity?: number;

@@ -6,6 +6,7 @@ import { env } from './env';
 import { createOrder } from './handlers/create-order';
 import { createProduct } from './handlers/create-product';
 import { deleteProduct } from './handlers/delete-product';
+import { findOrderById } from './handlers/find-order-by-id';
 import { findProductsByCategory } from './handlers/find-product-by-category';
 import { listOrders } from './handlers/list-orders';
 import { updateOrderStatus } from './handlers/update-order-status';
@@ -26,6 +27,7 @@ router.delete('/product/:id', deleteProduct);
 router.get('/', listOrders);
 router.post('/', createOrder);
 router.put('/:id', updateOrderStatus);
+router.get('/:id', findOrderById);
 
 app.use(cors());
 app.use(express.json());

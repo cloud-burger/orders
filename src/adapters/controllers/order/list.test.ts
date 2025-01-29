@@ -113,11 +113,11 @@ describe('list orders controller', () => {
     expect(response).toEqual({
       body: [
         {
-          amount: 'R$\xa010,00',
+          amount: 10,
           id: '123',
           products: [
             {
-              amount: 'R$\xa010,00',
+              amount: 10,
               category: 'BURGER',
               description: 'Hamburger de salmão',
               id: '123',
@@ -127,7 +127,7 @@ describe('list orders controller', () => {
           status: 'DONE',
         },
         {
-          amount: 'R$\xa010,00',
+          amount: 10,
           customer: {
             documentNumber: '01234567890',
             email: 'john@gmail.com',
@@ -137,7 +137,7 @@ describe('list orders controller', () => {
           id: '123',
           products: [
             {
-              amount: 'R$\xa010,00',
+              amount: 10,
               category: 'BURGER',
               description: 'Hamburger de salmão',
               id: '123',

@@ -66,7 +66,7 @@ describe('update product controller', () => {
 
     expect(response).toEqual({
       body: {
-        amount: 'R$\xa020,99',
+        amount: 20.99,
         category: 'BURGER',
         description:
           'Hambúrguer com bacon crocante, queijo cheddar e molho barbecue.',

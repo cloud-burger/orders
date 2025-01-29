@@ -65,7 +65,7 @@ describe('create order controller', () => {
 
     expect(response).toEqual({
       body: {
-        amount: 'R$\xa020,99',
+        amount: 20.99,
         number: 123,
         customer: {
           documentNumber: '53523992060',
@@ -76,7 +76,7 @@ describe('create order controller', () => {
         id: 'eba521ba-f6b7-46b5-ab5f-dd582495705e',
         products: [
           {
-            amount: 'R$\xa020,99',
+            amount: 20.99,
             category: 'BURGER',
             description:
               'Hambúrguer com bacon crocante, queijo cheddar e molho barbecue.',
