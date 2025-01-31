@@ -1,52 +1,37 @@
 import { Request } from '@cloud-burger/handlers';
 import { mock, MockProxy } from 'jest-mock-extended';
 import { makeOrder } from 'tests/factories/make-order';
-import { UpdateOrderStatusUseCase } from '~/use-cases/order/update-status';
-import { UpdateOrderStatusController } from './update-status';
+import { FindOrderByIdUseCase } from '~/use-cases/order/find-by-id';
+import { FindOrderByIdController } from './find-by-id';
 
-describe('update order status controller', () => {
-  let updateOrderStatusUseCase: MockProxy<UpdateOrderStatusUseCase>;
-  let updateOrderStatusController: UpdateOrderStatusController;
+describe('find order by id controller', () => {
+  let findOrderByIdUseCase: MockProxy<FindOrderByIdUseCase>;
+  let findOrderByIdController: FindOrderByIdController;
 
   beforeAll(() => {
-    updateOrderStatusUseCase = mock();
-    updateOrderStatusController = new UpdateOrderStatusController(
-      updateOrderStatusUseCase,
-    );
+    findOrderByIdUseCase = mock();
+    findOrderByIdController = new FindOrderByIdController(findOrderByIdUseCase);
   });
 
   it('should throw validation error when has validation errors', async () => {
     try {
-      await updateOrderStatusController.handler({
-        body: {
-          status: 'RECEIVE',
-        },
-      } as unknown as Request);
+      await findOrderByIdController.handler({} as unknown as Request);
     } catch (error) {
       expect(error.toObject()).toEqual({
         invalidParams: [
-          {
-            name: 'status',
-            reason:
-              'status must be one of [RECEIVED, PREPARING, DONE, FINISHED]',
-            value: 'RECEIVE',
-          },
           { name: 'id', reason: 'id is required', value: undefined },
         ],
         reason: 'Invalid request data',
       });
     }
 
-    expect(updateOrderStatusUseCase.execute).not.toHaveBeenCalled();
+    expect(findOrderByIdUseCase.execute).not.toHaveBeenCalled();
   });
 
   it('should update order status successfully', async () => {
-    updateOrderStatusUseCase.execute.mockResolvedValue(makeOrder());
+    findOrderByIdUseCase.execute.mockResolvedValue(makeOrder());
 
-    const response = await updateOrderStatusController.handler({
-      body: {
-        status: 'RECEIVED',
-      },
+    const response = await findOrderByIdController.handler({
       params: {
         id: 'eba521ba-f6b7-46b5-ab5f-dd582495705e',
       },
@@ -82,9 +67,9 @@ describe('update order status controller', () => {
       },
       statusCode: 200,
     });
-    expect(updateOrderStatusUseCase.execute).toHaveBeenNthCalledWith(1, {
-      id: 'eba521ba-f6b7-46b5-ab5f-dd582495705e',
-      status: 'RECEIVED',
-    });
+    expect(findOrderByIdUseCase.execute).toHaveBeenNthCalledWith(
+      1,
+      'eba521ba-f6b7-46b5-ab5f-dd582495705e',
+    );
   });
 });

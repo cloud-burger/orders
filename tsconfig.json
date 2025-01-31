@@ -22,6 +22,7 @@
     "paths": {
       "~/api/*": ["./api/*"],
       "~/controllers/*": ["./adapters/controllers/*"],
+      "~/workers/*": ["./adapters/workers/*"],
       "~/presenters/*": ["./adapters/presenters/*"],
       "~/domain/*": ["./domain/*"],
       "~/infrastructure/*": ["./infrastructure/*"],

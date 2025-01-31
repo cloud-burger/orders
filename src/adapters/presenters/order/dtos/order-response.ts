@@ -3,7 +3,7 @@ import { ProductResponse } from '../../product/dtos/product-response';
 
 export interface OrderResponse {
   id: string;
-  amount: string;
+  amount: number;
   number: number;
   customer?: CustomerResponse;
   status: OrderStatus;

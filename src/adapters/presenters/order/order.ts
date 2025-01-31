@@ -1,4 +1,3 @@
-import { getFormattedCurrency } from '~/controllers/helpers/currency';
 import { removeNullValues } from '~/controllers/helpers/remove-null-values';
 import { Order } from '~/domain/entities/order';
 import { ProductPresenter } from '../product/product';
@@ -9,7 +8,7 @@ export class OrderPresenter {
     return removeNullValues({
       id: order.id,
       number: order.number,
-      amount: getFormattedCurrency(order.amount),
+      amount: order.amount,
       status: order.status,
       products: order.products.map((product) =>
         ProductPresenter.toHttp(product),

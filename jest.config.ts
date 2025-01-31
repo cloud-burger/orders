@@ -19,6 +19,7 @@ export default {
   moduleNameMapper: {
     '~/api/(.*)': '<rootDir>/src/api/$1',
     '~/controllers/(.*)': '<rootDir>/src/adapters/controllers/$1',
+    '~/workers/(.*)': '<rootDir>/src/adapters/workers/$1',
     '~/presenters/(.*)': '<rootDir>/src/adapters/presenters/$1',
     '~/domain/(.*)': '<rootDir>/src/domain/$1',
     '~/infrastructure/(.*)': '<rootDir>/src/infrastructure/$1',
