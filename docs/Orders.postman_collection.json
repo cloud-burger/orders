@@ -28,7 +28,7 @@
               "raw": "{\n  \"name\": \"Batata smile\",\n  \"category\": \"SIDE\",\n  \"description\": \"Batata frita smile\",\n  \"amount\": 4.99\n}"
             },
             "url": {
-              "raw": "http://api.cloudburger.com.br/product",
+              "raw": "http://api.cloudburger.com.br/products",
               "protocol": "http",
               "host": ["api", "cloudburger", "com", "br"],
               "path": ["product"]
@@ -55,7 +55,7 @@
               "raw": "{\n  \"name\": \"Batata smile\",\n  \"category\": \"SIDE\",\n  \"description\": \"Batata frita smile\",\n  \"amount\": 8.99\n}"
             },
             "url": {
-              "raw": "http://api.cloudburger.com.br/product/:id",
+              "raw": "http://api.cloudburger.com.br/products/:id",
               "protocol": "http",
               "host": ["api", "cloudburger", "com", "br"],
               "path": ["product", ":id"],
@@ -80,7 +80,7 @@
               }
             ],
             "url": {
-              "raw": "http://api.cloudburger.com.br/product/:id",
+              "raw": "http://api.cloudburger.com.br/products/:id",
               "protocol": "http",
               "host": ["api", "cloudburger", "com", "br"],
               "path": ["product", ":id"],
@@ -105,7 +105,7 @@
               }
             ],
             "url": {
-              "raw": "http://api.cloudburger.com.br/product/:category",
+              "raw": "http://api.cloudburger.com.br/products/:category",
               "protocol": "http",
               "host": ["api", "cloudburger", "com", "br"],
               "path": ["product", ":category"],
@@ -148,7 +148,7 @@
               "raw": "{\n  \"products\": [\n    {\n      \"id\": \"bee3e0c8-be36-4f7d-bc6f-2440dccd0d89\",\n      \"quantity\": 1\n    },\n    {\n      \"id\": \"c3dd096a-485a-46f6-9243-11501733a36f\",\n      \"quantity\": 1\n    },\n    {\n      \"id\": \"372cd3a3-0897-4fc5-aced-213fec203ee4\",\n      \"quantity\": 2\n    },\n    {\n      \"id\": \"5500c5df-a754-44a7-82d6-ca7fe3803733\",\n      \"quantity\": 2\n    }\n  ]\n}"
             },
             "url": {
-              "raw": "http://api.cloudburger.com.br/",
+              "raw": "http://api.cloudburger.com.br/orders",
               "protocol": "http",
               "host": ["api", "cloudburger", "com", "br"],
               "path": [""]
@@ -167,7 +167,7 @@
               }
             ],
             "url": {
-              "raw": "http://api.cloudburger.com.br?pageSize=10&pageNumber=1",
+              "raw": "http://api.cloudburger.com.br/orders?pageSize=10&pageNumber=1",
               "protocol": "http",
               "host": ["api", "cloudburger", "com", "br"],
               "query": [
@@ -204,7 +204,7 @@
               }
             },
             "url": {
-              "raw": "http://api.cloudburger.com.br/:id",
+              "raw": "http://api.cloudburger.com.br/orders/:id",
               "protocol": "http",
               "host": ["api", "cloudburger", "com", "br"],
               "path": [":id"],

@@ -11,7 +11,7 @@ servers:
   - url: http://localhost:8080
     description: Local running
 paths:
-  /product:
+  /products:
     post:
       tags:
         - Product
@@ -32,7 +32,7 @@ paths:
           $ref: "#/components/responses/ConflictError"
         "500":
           $ref: "#/components/responses/InternalServerError"
-  /product/{id}:
+  /products/{id}:
     put:
       tags:
         - Product
@@ -71,7 +71,7 @@ paths:
           $ref: "#/components/responses/NotFound"
         "500":
           $ref: "#/components/responses/InternalServerError"
-  /product/{category}:
+  /products/{category}:
     get:
       tags:
         - Product
@@ -84,7 +84,7 @@ paths:
           $ref: "#/components/responses/FindProductByCategory"
         "500":
           $ref: "#/components/responses/InternalServerError"
-  /:
+  /orders:
     post:
       tags:
         - Order
@@ -121,7 +121,7 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "500":
           $ref: "#/components/responses/InternalServerError"
-  /{id}:
+  /orders/{id}:
     put:
       tags:
         - Order
