@@ -18,16 +18,16 @@ const PORT = +env.PORT;
 const router = Router();
 
 // Product
-router.get('/product', findProductsByCategory);
-router.post('/product', createProduct);
-router.put('/product/:id', updateProduct);
-router.delete('/product/:id', deleteProduct);
+router.get('/products', findProductsByCategory);
+router.post('/products', createProduct);
+router.put('/products/:id', updateProduct);
+router.delete('/products/:id', deleteProduct);
 
 // Order
-router.get('/', listOrders);
-router.post('/', createOrder);
-router.put('/:id', updateOrderStatus);
-router.get('/:id', findOrderById);
+router.get('/orders', listOrders);
+router.post('/orders', createOrder);
+router.put('/orders/:id', updateOrderStatus);
+router.get('/orders/:id', findOrderById);
 
 app.use(cors());
 app.use(express.json());

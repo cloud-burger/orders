@@ -16,7 +16,7 @@
     }
   ],
   "paths": {
-    "/product": {
+    "/products": {
       "post": {
         "tags": ["Product"],
         "summary": "Create product",
@@ -47,7 +47,7 @@
         }
       }
     },
-    "/product/{id}": {
+    "/products/{id}": {
       "put": {
         "tags": ["Product"],
         "summary": "Update product",
@@ -107,7 +107,7 @@
         }
       }
     },
-    "/product/{category}": {
+    "/products/{category}": {
       "get": {
         "tags": ["Product"],
         "summary": "Find products by category",
@@ -127,7 +127,7 @@
         }
       }
     },
-    "/": {
+    "/orders": {
       "post": {
         "tags": ["Order"],
         "summary": "Create order",
@@ -187,7 +187,7 @@
         }
       }
     },
-    "/{id}": {
+    "/orders/{id}": {
       "put": {
         "tags": ["Order"],
         "summary": "Update order status",
