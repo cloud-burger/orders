@@ -36,6 +36,11 @@ jobs:
 
       - name: Running tests
         run: npm run test
+      
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v4
+        env:
+          SONAR_TOKEN: ${{ secrets. SONARCLOUD_TOKEN }}
 
   build-and-deploy:
     name: Continuous Delivery Pipeline
