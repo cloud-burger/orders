@@ -52,6 +52,14 @@ jobs:
 
       - name: Install Serverless
         run: npm i -g serverless@3.39.0
+      
+      - name: Running tests
+        run: npm run test
+      
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v4
+        env:
+          SONAR_TOKEN: ${{ secrets. SONARCLOUD_TOKEN }}
 
       - name: Install Serverless ESbuild
         run: serverless plugin install -n serverless-esbuild
