@@ -1,10 +1,11 @@
 const pactum = require('pactum');
 const { Given, When, Then, Before, After } = require('@cucumber/cucumber');
 
+const url = 'http://localhost:8081/product';
+const idNotFound = 'ce2d81f-0f17-42c1-8752-22481a533d0c';
+
 let spec = pactum.spec();
 let stash = pactum.stash;
-
-const url = 'http://localhost:8081/product';
 
 Before(() => { 
     spec = pactum.spec();
@@ -14,9 +15,7 @@ Before(() => {
 });
 
 After({ tags: "@cleanup" }, async function () {
-    await pactum.spec()
-        .delete(url + '/{id}')
-        .withPathParams('id', '$S{productId}');
+    await deleteProduct(stash.getDataStore().productId);
 });
 
 async function createProduct() {
@@ -43,6 +42,13 @@ async function updateProduct(id: string) {
         .put(url + '/{id}')
         .withPathParams('id', id)
         .withJson(jsonData);
+}
+
+async function deleteProduct(id: string) {
+    spec = pactum.spec();
+    await spec
+        .delete(url + '/{id}')
+        .withPathParams('id', id);
 }
 
 When('I try to create a new product', async function () {
@@ -135,9 +141,21 @@ Then('the updated product data is returned', function () {
 });
 
 When('I try to update the product with an id that not exists', async function () {
-    await updateProduct('ce2d81f-0f17-42c1-8752-22481a533d0c');
+    await updateProduct(idNotFound);
 });
 
 Then('I should receive a not found response error', function () {
     spec.response().should.have.status(404);
+});
+
+When('I try to delete the product', async function () {
+    await deleteProduct(stash.getDataStore().productId);
+});
+
+Then('I should receive a success with no content response', function () {
+    spec.response().should.have.status(204);
+});
+
+When('I try to delete the product with an id that not exists', async function () {
+    await deleteProduct(idNotFound);
 });

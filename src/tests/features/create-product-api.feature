@@ -37,17 +37,6 @@ Feature: Create Product API
                 | category      | Product category is required    |
                 | description   | Product description is required |
                 | amount        | Product amount is required      |
-
-    # Scenario: Update Product
-    #     Given that the product exists
-    #     When the update of a product is requested
-    #     Then the product data is updated
-    #     And the product data is returned
-
-    # Scenario: Delete Product
-    #     Given that the product exists
-    #     When there is a request to delete a product
-    #     Then the product is deleted
     
     # Scenario: Find Products by category
     #     When a search of product by category is requested
