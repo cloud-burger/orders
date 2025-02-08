@@ -6,17 +6,12 @@ let stash = pactum.stash;
 
 const url = 'http://localhost:8081/product';
 
-stash.addDataTemplate({
-    'OriginalProduct': {
-        "name": "X Burger test20",
-        "category": "BURGER",
-        "description": "Pão carne e queijo",
-        "amount": 19.99,
-        "image": "assets.myimage.com/213"
-    }
-});
+Before(() => { 
+    spec = pactum.spec();
 
-Before(() => { spec = pactum.spec(); });
+    stash.clearDataTemplates();
+    stash.loadData('./src/tests/data');
+});
 
 After({ tags: "@cleanup" }, async function () {
     await pactum.spec()
@@ -24,21 +19,34 @@ After({ tags: "@cleanup" }, async function () {
         .withPathParams('id', '$S{productId}');
 });
 
-async function postNewProduct() {
+async function createProduct() {
+    let data = stash.getDataTemplate();
+    let jsonData = data.OriginalProduct;
+    if ("Product" in data) {
+        jsonData = data.Product;
+    }
+
     await spec
         .post(url)
-        .withJson({
-            '@DATA:TEMPLATE@': 'Product'
-        })
-        .stores('productId', 'id');
+        .withJson(jsonData)
+        .stores('productId', 'id');    
+}
+
+async function updateProduct(id: string) {
+    let data = stash.getDataTemplate();
+    let jsonData = data.UpdatedProduct;
+    if ("Product" in data) {
+        jsonData = data.Product;
+    }
+
+    await spec
+        .put(url + '/{id}')
+        .withPathParams('id', id)
+        .withJson(jsonData);
 }
 
 When('I try to create a new product', async function () {
-    let data = stash.getDataTemplate();
-    data.Product = data.OriginalProduct;
-    stash.addDataTemplate(data);
-
-    await postNewProduct();
+    await createProduct();
 });
 
 Then('I should receive a success response', function () {
@@ -47,7 +55,7 @@ Then('I should receive a success response', function () {
 
 Then('the same product data is returned', function () {
     spec.response().to.have.jsonLike({
-        '@DATA:TEMPLATE@': 'Product',
+        '@DATA:TEMPLATE@': 'OriginalProduct',
         '@OVERRIDES@': {
             'amount': 'R$ 19,99'
         }
@@ -55,11 +63,7 @@ Then('the same product data is returned', function () {
 });
 
 Given('that the product has already been created', async function () {
-    let data = stash.getDataTemplate();
-    data.Product = data.OriginalProduct;
-    stash.addDataTemplate(data);
-
-    await postNewProduct();
+    await createProduct();
 });
 
 When('I try to create the same product', async function () {
@@ -67,7 +71,7 @@ When('I try to create the same product', async function () {
     await spec
         .post(url)
         .withJson({
-            '@DATA:TEMPLATE@': 'Product'
+            '@DATA:TEMPLATE@': 'OriginalProduct'
         });
 });
 
@@ -110,4 +114,30 @@ Given('that the data product do not have the parameter {string}', function (para
     delete data.Product[param];
 
     stash.addDataTemplate(data);
+});
+
+When('I try to update the product', async function () {
+    spec = pactum.spec()    
+    await updateProduct(stash.getDataStore().productId);
+});
+
+Then('I should receive a OK response', function () {
+    spec.response().should.have.status(200);
+});
+
+Then('the updated product data is returned', function () {
+    spec.response().to.have.jsonLike({
+        '@DATA:TEMPLATE@': 'UpdatedProduct',
+        '@OVERRIDES@': {
+            'amount': 'R$ 9,99'
+        }
+    });
+});
+
+When('I try to update the product with an id that not exists', async function () {
+    await updateProduct('ce2d81f-0f17-42c1-8752-22481a533d0c');
+});
+
+Then('I should receive a not found response error', function () {
+    spec.response().should.have.status(404);
 });
