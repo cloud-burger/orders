@@ -51,6 +51,13 @@ async function deleteProduct(id: string) {
         .withPathParams('id', id);
 }
 
+async function findProductsByCategory(category: string) {
+    spec = pactum.spec();
+    await spec
+        .get(url)
+        .withQueryParams('category', category);
+}
+
 When('I try to create a new product', async function () {
     await createProduct();
 });
@@ -158,4 +165,51 @@ Then('I should receive a success with no content response', function () {
 
 When('I try to delete the product with an id that not exists', async function () {
     await deleteProduct(idNotFound);
+});
+
+When('a search of products by {string} category is requested', async function (category: string) {
+    await findProductsByCategory(category);
+});
+
+Then('a list of this products is returned', function () {
+    spec.response().to.have.jsonSchema({
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "id": {"type": "string"},
+                "amount": {"type": "string"},
+                "category": {"type": "string"},
+                "description": {"type": "string"},
+                "name": {"type": "string"},
+            },
+            "required": ["id", "amount", "category", "description", "name"]
+        }
+    
+    });
+});
+
+Then('with the {string} category', function (category: string) {
+    spec.response().to.have.jsonLike([
+        {
+            "category": category
+        }
+    ]);
+});
+
+When('a search of product by category is requested', async function () {
+    let category = stash.getDataTemplate().OriginalProduct.category;
+    await findProductsByCategory(category);
+});
+
+Then('a list with this products is returned', function () {        
+    let id = stash.getDataStore().productId;
+    spec.response().to.have.jsonLike([
+        {
+            '@DATA:TEMPLATE@': 'OriginalProduct',
+            '@OVERRIDES@': {
+                'amount': 'R$ 19,99'
+            }
+        }
+    ]);
 });

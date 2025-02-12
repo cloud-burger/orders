@@ -37,7 +37,3 @@ Feature: Create Product API
                 | category      | Product category is required    |
                 | description   | Product description is required |
                 | amount        | Product amount is required      |
-    
-    # Scenario: Find Products by category
-    #     When a search of product by category is requested
-    #     Then a list of this products is returned
