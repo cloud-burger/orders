@@ -203,7 +203,6 @@ When('a search of product by category is requested', async function () {
 });
 
 Then('a list with this products is returned', function () {        
-    let id = stash.getDataStore().productId;
     spec.response().to.have.jsonLike([
         {
             '@DATA:TEMPLATE@': 'OriginalProduct',
