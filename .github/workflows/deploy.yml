@@ -124,7 +124,7 @@ jobs:
         run: aws eks update-kubeconfig --name infra-kubernetes-prd --region us-east-1
 
       - name: Update kube deployment
-        run: kubectl set image deployment/self-service-orders self-service-orders=$IMAGE_URI -n orders
+        run: kubectl set image deployment/self-service-orders self-service-orders=$IMAGE_URI -n self-service
 
       - name: Push new tag to GitHub
         run: |
