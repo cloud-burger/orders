@@ -16,7 +16,7 @@ spec:
         app: self-service-orders
     spec:
       containers:
-        - image: 594646746001.dkr.ecr.us-east-1.amazonaws.com/self-service-orders:0.1.0
+        - image: 594646746001.dkr.ecr.us-east-1.amazonaws.com/self-service-orders:latest
           name: self-service-orders
           ports:
             - name: http
