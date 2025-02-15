@@ -1,0 +1,16 @@
+{
+    "OriginalProduct": {
+        "name": "X Burger test",
+        "category": "BURGER",
+        "description": "Pão carne e queijo",
+        "amount": 19.99,
+        "image": "assets.myimage.com/213"
+    },
+    "UpdatedProduct": {
+        "name": "Batatinha Frita - BDD",
+        "category": "SIDE",
+        "description": "Batata frita que estamos testando",
+        "amount": 9.99,
+        "image": "assets.myimage.com/214"
+    }
+}
