@@ -105,7 +105,7 @@ spec:
     - name: self-service-orders
       match:
         - uri:
-            prefix: /orders/
+            prefix: /orders
       route:
         - destination:
             host: self-service-orders
