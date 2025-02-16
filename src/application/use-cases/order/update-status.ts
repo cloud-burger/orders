@@ -10,7 +10,7 @@ interface Input {
 }
 
 export class UpdateOrderStatusUseCase {
-  constructor(private orderRepository: OrderRepository) {}
+  constructor(private readonly orderRepository: OrderRepository) {}
 
   async execute(input: Input): Promise<Order> {
     const order = await this.orderRepository.findById(input.id);

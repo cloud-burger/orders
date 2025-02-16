@@ -13,7 +13,7 @@ import { INSERT_PRODUCT } from './queries/insert-product';
 import { UPDATE_PRODUCT } from './queries/update-product';
 
 export class ProductRepository implements IProductRepository {
-  constructor(private connection: Connection) {}
+  constructor(private readonly connection: Connection) {}
 
   async create(product: Product): Promise<void> {
     const recordToSave = DatabaseProductMapper.toDatabase(product);

@@ -5,7 +5,7 @@ import {
 } from '~/domain/repositories/order';
 
 export class ListOrdersUseCase {
-  constructor(private orderRepository: OrderRepository) {}
+  constructor(private readonly orderRepository: OrderRepository) {}
 
   async execute(input: OrderPaginationParams): Promise<Order[]> {
     return await this.orderRepository.findMany(input);

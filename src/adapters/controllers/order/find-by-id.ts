@@ -12,7 +12,7 @@ import { FindOrderByIdUseCase } from '~/use-cases/order/find-by-id';
 import { findOrderByIdSchema } from './validations/find-order-by-id-schema';
 
 export class FindOrderByIdController {
-  constructor(private findOrderByIdUseCase: FindOrderByIdUseCase) {}
+  constructor(private readonly findOrderByIdUseCase: FindOrderByIdUseCase) {}
 
   handler: Controller = async (
     request: Request,
@@ -28,7 +28,7 @@ export class FindOrderByIdController {
       ...params,
     });
 
-    const hasValidationErrors = errors && errors.length;
+    const hasValidationErrors = errors?.length;
 
     if (hasValidationErrors) {
       logger.warn({

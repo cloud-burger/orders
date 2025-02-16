@@ -16,8 +16,8 @@ interface ProductInput {
 
 export class CreateOrderUseCase {
   constructor(
-    private orderRepository: OrderRepository,
-    private productRepository: ProductRepository,
+    private readonly orderRepository: OrderRepository,
+    private readonly productRepository: ProductRepository,
   ) {}
 
   async execute({ products }: Input): Promise<Order> {

@@ -15,7 +15,7 @@ import { INSERT_ORDER, INSERT_ORDER_PRODUCT } from './queries/insert';
 import { UPDATE_ORDER_STATUS } from './queries/update-status';
 
 export class OrderRepository implements IOrderRepository {
-  constructor(private connection: Connection) {}
+  constructor(private readonly connection: Connection) {}
 
   async findMany(input: OrderPaginationParams): Promise<Order[]> {
     const { records } = await this.connection.query({

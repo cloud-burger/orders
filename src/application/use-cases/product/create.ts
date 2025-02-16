@@ -13,7 +13,7 @@ interface Input {
 }
 
 export class CreateProductUseCase {
-  constructor(private productRepository: ProductRepository) {}
+  constructor(private readonly productRepository: ProductRepository) {}
 
   async execute({
     name,
