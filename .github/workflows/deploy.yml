@@ -53,6 +53,7 @@ jobs:
   build-and-deploy:
     name: Continuous Delivery Pipeline
     runs-on: ubuntu-latest
+    needs: ci
     if: github.event_name == 'push'
     steps:
       - name: Checkout code
@@ -60,14 +61,6 @@ jobs:
 
       - name: Install Serverless
         run: npm i -g serverless@3.39.0
-
-      - name: Running tests
-        run: npm run test
-
-      - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v4
-        env:
-          SONAR_TOKEN: ${{ secrets. SONARCLOUD_TOKEN }}
 
       - name: Install Serverless ESbuild
         run: serverless plugin install -n serverless-esbuild
@@ -134,7 +127,7 @@ jobs:
           git push origin ${{ steps.tagger.outputs.next_tag }}
 
   kubernetes_create_workload:
-    name: "Kubernetes Manifests Apply"
+    name: 'Kubernetes Manifests Apply'
     runs-on: ubuntu-latest
     if: github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'kubernetes_create_workload'
 
