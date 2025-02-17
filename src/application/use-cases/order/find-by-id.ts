@@ -4,7 +4,7 @@ import { Order } from '~/domain/entities/order';
 import { OrderRepository } from '~/domain/repositories/order';
 
 export class FindOrderByIdUseCase {
-  constructor(private orderRepository: OrderRepository) {}
+  constructor(private readonly orderRepository: OrderRepository) {}
 
   async execute(id: string): Promise<Order> {
     const order = await this.orderRepository.findById(id);

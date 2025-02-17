@@ -12,7 +12,7 @@ import { CreateOrderUseCase } from '~/use-cases/order/create';
 import { orderSchema } from './validations/order-schema';
 
 export class CreateOrderController {
-  constructor(private createOrderUseCase: CreateOrderUseCase) {}
+  constructor(private readonly createOrderUseCase: CreateOrderUseCase) {}
 
   handler: Controller = async (
     request: Request,
@@ -27,7 +27,7 @@ export class CreateOrderController {
 
     const { data, errors } = validateSchema(orderSchema, body);
 
-    const hasValidationErrors = errors && errors.length;
+    const hasValidationErrors = errors?.length;
 
     if (hasValidationErrors) {
       logger.warn({

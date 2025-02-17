@@ -7,7 +7,7 @@ interface Input {
 }
 
 export class FindProductsByCategoryUseCase {
-  constructor(private productRepository: ProductRepository) {}
+  constructor(private readonly productRepository: ProductRepository) {}
 
   async execute({ category }: Input): Promise<Product[]> {
     return await this.productRepository.findByCategory(category);

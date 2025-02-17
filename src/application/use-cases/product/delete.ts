@@ -7,7 +7,7 @@ interface Input {
 }
 
 export class DeleteProductUseCase {
-  constructor(private productRepository: ProductRepository) {}
+  constructor(private readonly productRepository: ProductRepository) {}
 
   async execute({ id }: Input): Promise<void> {
     const product = await this.productRepository.findById(id);

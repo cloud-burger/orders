@@ -23,7 +23,7 @@ export const FIND_MANY = (input: OrderPaginationParams) => {
           FROM public.orders o
           JOIN public.orders_products op ON o.id = op.order_id
           JOIN public.products p ON op.product_id = p.id
-          WHERE o.status <> 'FINISHED'
+          WHERE o.status <> 'FINISHED' ${clauses}
           GROUP BY o.id
           ORDER BY 
               CASE 

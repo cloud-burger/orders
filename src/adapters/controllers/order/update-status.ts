@@ -12,7 +12,9 @@ import { UpdateOrderStatusUseCase } from '~/use-cases/order/update-status';
 import { updateOrderStatusSchema } from './validations/update-order-status-schema';
 
 export class UpdateOrderStatusController {
-  constructor(private updateOrderStatusUseCase: UpdateOrderStatusUseCase) {}
+  constructor(
+    private readonly updateOrderStatusUseCase: UpdateOrderStatusUseCase,
+  ) {}
 
   handler: Controller = async (
     request: Request,
@@ -29,7 +31,7 @@ export class UpdateOrderStatusController {
       ...params,
     });
 
-    const hasValidationErrors = errors && errors.length;
+    const hasValidationErrors = errors?.length;
 
     if (hasValidationErrors) {
       logger.warn({

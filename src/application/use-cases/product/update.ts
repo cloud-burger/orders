@@ -14,7 +14,7 @@ interface Input {
 }
 
 export class UpdateProductUseCase {
-  constructor(private productRepository: ProductRepository) {}
+  constructor(private readonly productRepository: ProductRepository) {}
 
   async execute(input: Input): Promise<Product> {
     const product = await this.productRepository.findById(input.id);
